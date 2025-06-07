@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+@using Markdig
+@model List<Message>
+@foreach (var message in Model)
+{
+    var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+    var htmlContent = Markdown.ToHtml(message.Content, pipeline);
+    if (message.IsUserMessage)
+    {
+        <div class="message user">@Html.Raw(htmlContent)</div>
+    }
+    else
+    {
+        <div class="message bot">@Html.Raw(htmlContent)</div>
+    }
+}

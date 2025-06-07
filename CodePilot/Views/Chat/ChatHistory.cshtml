@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+@using Markdig
+@model List<Chat>
+@foreach (var chat in Model)
+{
+    var htmlContent = Markdown.ToHtml(chat.Title);
+    <div class="chat-item" id="chat-@chat.Id" data-chat-id="@chat.Id" onclick="selectChat(@chat.Id)">
+        <button onclick="deleteChat(@chat.Id); event.stopPropagation();" class="delete-chat">
+            <svg viewBox="-1 -1 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" id="Trash-Bin-Trash--Streamline-Solar-Broken" height="32" width="32">
+                <desc>Trash Bin Trash Streamline Icon: https://streamlinehq.com</desc>
+                <path d="M25.625125 7.5H4.375" stroke="#da3333" stroke-linecap="round" stroke-width="2"></path>
+                <path d="m11.875 13.75 0.625 6.25" stroke="#da3333" stroke-linecap="round" stroke-width="2"></path>
+                <path d="m18.125 13.75 -0.625 6.25" stroke="#da3333" stroke-linecap="round" stroke-width="2"></path>
+                <path d="M8.125 7.5c0.06985 0 0.10477500000000001 0 0.1364375 -0.0008 1.0292999999999999 -0.0260875 1.9373375000000002 -0.6805625 2.2875875 -1.6488 0.010775 -0.0297875 0.0218125 -0.0629125 0.043899999999999995 -0.1291875l0.1213625 -0.36407500000000004c0.1036 -0.3107875 0.1554 -0.4661875 0.2241 -0.5981375 0.274125 -0.5264125 0.7812874999999999 -0.89195 1.367375 -0.9855375C12.4526625 3.75 12.616499999999998 3.75 12.944125 3.75h4.11175c0.327625 0 0.4915 0 0.638375 0.023462499999999997 0.586125 0.0935875 1.09325 0.459125 1.367375 0.9855375 0.06875 0.13195 0.1205 0.28735 0.224125 0.5981375l0.12137500000000001 0.36407500000000004c0.022000000000000002 0.0661875 0.033125 0.099425 0.043875 0.1291875 0.35025 0.9682375 1.2582499999999999 1.6227125 2.2876250000000002 1.6488C21.77025 7.5 21.805124999999997 7.5 21.875 7.5" stroke="#da3333" stroke-width="2"></path>
+                <path d="M22.966875 19.248875c-0.22125 3.318625 -0.33187500000000003 4.978 -1.413125 5.9895C20.4725 26.25 18.8095 26.25 15.4835 26.25h-0.96675c-3.326 0 -4.989 0 -6.0702625 -1.011625 -1.0812625 -1.0115 -1.1918875 -2.6708749999999997 -1.413125 -5.9895L6.4584375000000005 10.625m17.0833125 0 -0.25 3.75" stroke="#da3333" stroke-linecap="round" stroke-width="2"></path>
+            </svg>
+        </button>
+        <span>@Html.Raw(htmlContent)</span>
+    </div>
+}

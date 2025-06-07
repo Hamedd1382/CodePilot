@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Register/Login";
+}
+
+@model AuthViewModel
+
+@*<div class="theme-toggle">
+    <button id="themeToggle">Toggle Theme</button>
+</div>*@
+
+
+@if (ViewData["alert"] != null)
+{
+    <div class="alert" id="alertBox">@ViewData["alert"]</div>
+}
+
+<div class="reg-log">
+    <div class="container">
+        <h2>Welcome 🤗</h2>
+        <div class="form-wrapper">
+
+            <div class="tabs">
+                <button class="tab active" data-target="login">Login</button>
+                <button class="tab" data-target="register">Register</button>
+            </div>
+
+            <form asp-action="Login" id="login" class="form active">
+                <div class="input-group">
+                    <label for="loginUsername">Username</label>
+                    <input asp-for="logUsername" type="text" id="loginUsername" placeholder="Enter your username" />
+                    <span asp-validation-for="logUsername" class="error-message"></span>
+                </div>
+                <div class="input-group">
+                    <label for="loginPassword">Password</label>
+                    <input asp-for="Password" type="password" id="loginPassword" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="error-message"></span>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+
+            <form asp-action="Register" id="register" class="form">
+                <div class="input-group">
+                    <label for="registerUsername">Username</label>
+                    <input asp-for="regUsername" type="text" id="registerUsername" required placeholder="Enter your username" />
+                    <span asp-validation-for="regUsername" class="error-message"></span>
+                </div>
+                <div class="input-group">
+                    <label for="registerEmail">Email</label>
+                    <input asp-for="regEmail" type="email" id="registerEmail" required placeholder="Enter your email" />
+                    <span asp-validation-for="regEmail" class="error-message"></span>
+                </div>
+                <div class="input-group">
+                    <label for="registerPassword">Password</label>
+                    <input asp-for="Password" type="password" id="registerPassword" required placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="error-message"></span>
+                </div>
+                <div class="input-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" type="password" id="registerConfirmPassword" required placeholder="Confirm your password" />
+                    <span asp-validation-for="ConfirmPassword" class="error-message"></span>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/auth.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#alertBox").fadeIn().delay(5000).fadeOut();
+    });
+</script>
